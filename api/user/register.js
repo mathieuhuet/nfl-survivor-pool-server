@@ -4,12 +4,13 @@ const getRandomColor = require('../../utils/getRandomColor');
 
 
 const register = (req, res) => {
-  let {firstName, lastName, email, role, department, admin} = req.body;
+  let {firstName, lastName, email, username} = req.body;
   // remove white-space
   firstName = firstName.trim();
   lastName = lastName.trim();
   email = email.trim();
-  if ( firstName === "" || email === "") {
+  username = username.trim();
+  if ( firstName === "" || email === "" || username === '' || lastName === '') {
     res.status(400).json({
       error: true,
       message: "Remplissez tout les champs.",
@@ -48,33 +49,48 @@ const register = (req, res) => {
           data: null
         });
       } else {
-        const backgroundColor = getRandomColor();
-        const newUser = new User({
-          firstName,
-          lastName,
-          email,
-          role,
-          department,
-          admin,
-          accessToken: '',
-          profileIconColor: 'white',
-          profileIconBackgroundColor: backgroundColor,
-          online: false
-        });
-        newUser.save().then(result => {
-          res.status(201).json({
-            error: false,
-            message: 'Compte créer avec succès.',
-            data: result
-          })
+        User.find({username}).then(result => {
+          if (result.length) {
+            res.status(403).json({
+              error: true,
+              message: "Utilisateur avec ce courriel existe déjà",
+              data: null
+            });
+          } else {
+            const backgroundColor = getRandomColor();
+            const newUser = new User({
+              firstName,
+              lastName,
+              email,
+              username,
+              accessToken: '',
+              profileIconColor: 'white',
+              profileIconBackgroundColor: backgroundColor,
+              online: false
+            });
+            newUser.save().then(result => {
+              res.status(201).json({
+                error: false,
+                message: 'Compte créer avec succès.',
+                data: result
+              })
+            }).catch(err => {
+              console.log(err);
+              res.status(500).json({
+                error: true,
+                message: "Une erreure s'est produite dans la base de donnée.",
+                data: null
+              });
+            });
+          }
         }).catch(err => {
           console.log(err);
           res.status(500).json({
             error: true,
-            message: "Une erreure s'est produite dans la base de donnée.",
+            message: "Une erreure s'est produite durant la vérification d'un utilisateur existant avec ce username.",
             data: null
           });
-        });
+        })
       }
     }).catch(err => {
       console.log(err);

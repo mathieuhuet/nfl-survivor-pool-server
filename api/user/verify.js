@@ -2,7 +2,6 @@ const secret = require('../../secret');
 const jwt = require('jsonwebtoken');
 const mongoUserDB = require('../../config/mongoUser');
 // Generating accesstoken.
-const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 
 const UserVerification = mongoUserDB.model('userVerification', require('../../schemas/User/userVerification'));

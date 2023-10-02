@@ -36,11 +36,11 @@ const sendVerificationEmail = ({email}, res) => {
         if (data.length) {
           UserVerification.deleteMany({email}).then(() => {
             const mailOptions = {
-              from: `GPMM Alertes <${secret.AUTH_EMAIL}>`,
+              from: `nfl-survivor-pool <${secret.AUTH_EMAIL}>`,
               to: email,
-              subject: "Code d'accès pour l'application GPMM Alertes",
-              html: `<p>Voici le code pour vous connecter à votre compte.</p>` + 
-              `<p>Ce code <b>expire dans 10 minutes.</b></p><h1>${code}</h1>`
+              subject: "Your access code for nfl-survivor-pool",
+              html: `<p>Here's the code to connect to your nfl-survivor-pool</p>` + 
+              `<p>This code <b>expires in 10 minutes.</b></p><h1>${code}</h1>`
             };
             const newVerification = new UserVerification({
               email: email,
@@ -82,11 +82,11 @@ const sendVerificationEmail = ({email}, res) => {
           });
         } else {
           const mailOptions = {
-            from: `GPMM Alertes <${secret.AUTH_EMAIL}>`,
+            from: `nfl-survivor-pool <${secret.AUTH_EMAIL}>`,
             to: email,
-            subject: "Code d'accès pour l'application GPMM Alertes",
-            html: `<p>Voici le code pour vous connecter à votre compte.</p>` + 
-            `<p>Ce code <b>expire dans 10 minutes.</b></p><h1>${code}</h1>`
+            subject: "Your access code for nfl-survivor-pool",
+            html: `<p>Here's the code to connect to your nfl-survivor-pool</p>` + 
+            `<p>This code <b>expires in 10 minutes.</b></p><h1>${code}</h1>`
           };
           const newVerification = new UserVerification({
             email: email,

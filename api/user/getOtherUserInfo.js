@@ -15,12 +15,13 @@ const getOtherUserInfo = (req, res) => {
           firstName: data[0].firstName, 
           lastName: data[0].lastName, 
           email: data[0].email,
-          role: data[0].role,
-          admin: data[0].admin,
-          department: data[0].department,
+          username: data[0].username,
+          gameWin: data[0].gameWin,
+          gameLose: data[0].gameLose,
+          poolWin: data[0].poolWin,
+          poolLose: data[0].poolLose,
           profileIconColor: data[0].profileIconColor,
           profileIconBackgroundColor: data[0].profileIconBackgroundColor,
-          profileIconPolice: data[0].profileIconPolice,
           _id: data[0]._id.toString()
         }
       })
