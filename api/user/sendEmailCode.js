@@ -36,10 +36,10 @@ const sendVerificationEmail = ({email}, res) => {
         if (data.length) {
           UserVerification.deleteMany({email}).then(() => {
             const mailOptions = {
-              from: `nfl-survivor-pool <${secret.AUTH_EMAIL}>`,
+              from: `survivor-pool <${secret.AUTH_EMAIL}>`,
               to: email,
-              subject: "Your access code for nfl-survivor-pool",
-              html: `<p>Here's the code to connect to your nfl-survivor-pool</p>` + 
+              subject: "Your access code for survivor-pool",
+              html: `<p>Here's the code to connect to your survivor-pool</p>` + 
               `<p>This code <b>expires in 10 minutes.</b></p><h1>${code}</h1>`
             };
             const newVerification = new UserVerification({
@@ -82,10 +82,10 @@ const sendVerificationEmail = ({email}, res) => {
           });
         } else {
           const mailOptions = {
-            from: `nfl-survivor-pool <${secret.AUTH_EMAIL}>`,
+            from: `survivor-pool <${secret.AUTH_EMAIL}>`,
             to: email,
-            subject: "Your access code for nfl-survivor-pool",
-            html: `<p>Here's the code to connect to your nfl-survivor-pool</p>` + 
+            subject: "Your access code for survivor-pool",
+            html: `<p>Here's the code to connect to your survivor-pool</p>` + 
             `<p>This code <b>expires in 10 minutes.</b></p><h1>${code}</h1>`
           };
           const newVerification = new UserVerification({

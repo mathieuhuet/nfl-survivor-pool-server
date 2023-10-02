@@ -1,4 +1,4 @@
-# Server for nfl-survivor-pool  **WORK IN PROGRESS*
+# Server for survivor-pool  **WORK IN PROGRESS*
 
 Server handling all the back-end work, sending emails, verifying users, fetching data and modifying/adding data.
 
