@@ -1,15 +1,17 @@
-# Server for GPMM_Alertes
+# Server for nfl-survivor-pool  **WORK IN PROGRESS*
 
-Javascript
+Server handling all the back-end work, sending emails, verifying users, fetching data and modifying/adding data.
 
-MongoDB
+## Getting Started
 
-Mongoose
+To install the required dependencies, you're gonna run `npm install` at the root of this repository
 
-Express.js
+Start the server with `npx nodemon index.js`
 
-## Screenshot
+You need to create a `secret.js` file at the root of the project that export these variables : `MONGODB_USER_URI` `PORT` `AUTH_EMAIL` `AUTH_EMAIL_PASSWORD` `SECRET_KEY`
 
-This server send emails for email verification, and also when an activity is assigned to you :
+## Tech Stack
 
-![](assets/GPMM_005.png)
+The back-end server is **Express.JS**
+
+The database is **Mongo DB**
