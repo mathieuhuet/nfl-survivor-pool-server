@@ -19,6 +19,7 @@ const login = (req, res) => {
     User.find({email}).then(data => {
       // if (data.length) === user found
       if (data.length) {
+        console.log(data[0]);
         sendVerificationEmail(data[0], res);
       } else {
         res.status(403).json({

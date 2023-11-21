@@ -1,6 +1,7 @@
 const mongoUserDB = require('../../config/mongoUser');
 const User = mongoUserDB.model('users', require('../../schemas/User/user'));
 const getRandomColor = require('../../utils/getRandomColor');
+const sendVerificationEmail = require('./sendEmailCode');
 
 
 const register = (req, res) => {
@@ -69,11 +70,8 @@ const register = (req, res) => {
               online: false
             });
             newUser.save().then(result => {
-              res.status(201).json({
-                error: false,
-                message: 'Compte créer avec succès.',
-                data: result
-              })
+              console.log(result);
+              sendVerificationEmail(result, res);
             }).catch(err => {
               console.log(err);
               res.status(500).json({
