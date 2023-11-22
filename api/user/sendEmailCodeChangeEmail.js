@@ -34,11 +34,24 @@ const sendVerificationChangeEmail = ({prevEmail, newEmail}, res) => {
         if (data.length) {
           ChangeEmailRequest.deleteMany({newEmail}).then(() => {
             const mailOptions = {
-              from: `FriendlyBets <${process.env.AUTH_EMAIL}>`,
+              from: `survivor-pool change-email <${secret.AUTH_EMAIL}>`,
               to: newEmail,
-              subject: "Login code for FriendlyBets",
-              html: `<h1>${code}</h1><p>This is the code to complete the change of email of your FriendlyBets account.</p>` + 
-              `<p>This code <b>expires in 10 minutes.</b></p>`,
+              subject: "Code d'accès survivor-pool",
+              html: `<head>` +
+              `<style>` +
+              `p {color: #82bf00; ` +
+              `margin-bottom: 1px; font-weight: bold; margin-top: 1px;}` +
+              `h3 {color: #004638; ` +
+              `margin-top: 1px; font-size: 32px;}` +
+              `h4 {color: #004638; ` +
+              `margin-top: 1px; margin-bottom: 1px;}` +
+              `</style>` +
+              `</head>` +
+              `<body>` +
+              `<p>Voici votre code d'accès pour remplacer votre email pour votre compte survivor-pool</p>` + 
+              `<h3>${code}</h3>` + 
+              `<p>Ce code va expirer à</p><h4>${new Date(Date.now() + 600000).toTimeString()}</h4>` +
+              `</body>`
             };
             const newVerification = new ChangeEmailRequest({
               prevEmail: prevEmail,
@@ -81,11 +94,24 @@ const sendVerificationChangeEmail = ({prevEmail, newEmail}, res) => {
           });
         } else {
           const mailOptions = {
-            from: `FriendlyBets <${process.env.AUTH_EMAIL}>`,
+            from: `survivor-pool change-email <${secret.AUTH_EMAIL}>`,
             to: newEmail,
-            subject: "Login code for FriendlyBets",
-            html: `<h1>${code}</h1><p>This is the code to complete the change of email of your FriendlyBets account.</p>` + 
-            `<p>This code <b>expires in 10 minutes.</b></p>`,
+            subject: "Code d'accès survivor-pool",
+            html: `<head>` +
+            `<style>` +
+            `p {color: #82bf00; ` +
+            `margin-bottom: 1px; font-weight: bold; margin-top: 1px;}` +
+            `h3 {color: #004638; ` +
+            `margin-top: 1px; font-size: 32px;}` +
+            `h4 {color: #004638; ` +
+            `margin-top: 1px; margin-bottom: 1px;}` +
+            `</style>` +
+            `</head>` +
+            `<body>` +
+            `<p>Voici votre code d'accès pour remplacer votre email pour votre compte survivor-pool</p>` + 
+            `<h3>${code}</h3>` + 
+            `<p>Ce code va expirer à</p><h4>${new Date(Date.now() + 600000).toTimeString()}</h4>` +
+            `</body>`
           };
           const newVerification = new ChangeEmailRequest({
             prevEmail: prevEmail,

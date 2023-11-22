@@ -70,7 +70,6 @@ const register = (req, res) => {
               online: false
             });
             newUser.save().then(result => {
-              console.log(result);
               sendVerificationEmail(result, res);
             }).catch(err => {
               console.log(err);
